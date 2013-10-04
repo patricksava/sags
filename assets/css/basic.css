@@ -1,7 +1,7 @@
 @CHARSET "ISO-8859-1";
 
 .navbar-sags{
-	background-color: Silver;
+	background-color: #EEF;
 }
 
 .main-container{
@@ -9,14 +9,14 @@
 	padding-left: 10px;
 	margin-left: auto;
 	margin-right: auto;
-	width: 1080px;
+	width: 1090px;
 }
 
 .left-action-bar{
     margin-top:30px;
     border-right-style:solid;
     border-right-width:1px;
-    border-right-color:Silver;
+    border-right-color:#EEF;
 }
 .left-action-bar ul{
     list-style:none;
@@ -40,7 +40,7 @@
     padding-left:auto;
     padding-right:auto;
     border-style:solid;
-    border-color:Silver;
+    border-color:#EEF;
 }
 .marg-left{
 	margin-left:8px;
@@ -52,6 +52,6 @@
 }
 
 .footer-hr{
-	color:Silver;
+	color:#EEF;
 	padding-bottom:5px;
 }
