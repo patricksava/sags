@@ -1,0 +1,57 @@
+@CHARSET "ISO-8859-1";
+
+.navbar-sags{
+	background-color: Silver;
+}
+
+.main-container{
+	padding-right: 10px;
+	padding-left: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1080px;
+}
+
+.left-action-bar{
+    margin-top:30px;
+    border-right-style:solid;
+    border-right-width:1px;
+    border-right-color:Silver;
+}
+.left-action-bar ul{
+    list-style:none;
+}
+.left-action-bar li{
+    padding-bottom:5px;
+}
+.left-action-bar a:hover{
+    color: Gray;
+}
+
+.menu-title{
+    margin-left:6px;
+}
+
+.login-middle{
+    margin-top:30px;
+    margin-bottom:30px;
+    padding-top:30px;
+    padding-bottom:30px;
+    padding-left:auto;
+    padding-right:auto;
+    border-style:solid;
+    border-color:Silver;
+}
+.marg-left{
+	margin-left:8px;
+}
+
+.footer-section{
+	font-family: "Trebuchet MS";
+	font-size: 11px;
+}
+
+.footer-hr{
+	color:Silver;
+	padding-bottom:5px;
+}
