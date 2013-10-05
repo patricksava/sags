@@ -19,6 +19,7 @@ $config['base_url'] .= '://' . $_SERVER['HTTP_HOST'];
 $config['base_url'] .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
 //$config['base_url']	= '';
 
+
 /* 
 |-------------------------------------------------------------------------- 
 | Application Path 
@@ -50,6 +51,7 @@ $config['assets'] = $config['base_url'] .  "assets/";
 |
 */
 $config['index_page'] = 'index.php';
+$config['basic_url'] = $config['base_url'].$config['index_page'].'/';
 
 /*
 |--------------------------------------------------------------------------
@@ -247,7 +249,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'jifAEfiEFIANNFfnfnaiqoooFuOiQwwR';
 
 /*
 |--------------------------------------------------------------------------

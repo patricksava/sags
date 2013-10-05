@@ -4,6 +4,11 @@
 	background-color: #EEF;
 }
 
+.login-span{
+	font-family: "Trebuchet MS";
+	font-size: 11px;
+}
+
 .main-container{
 	padding-right: 10px;
 	padding-left: 10px;

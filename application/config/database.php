@@ -46,12 +46,12 @@
 */
 
 $active_group = 'sagsbetadev';
-$active_record = FALSE;
+$active_record = TRUE;
 
 $db['sagsbetadev']['hostname'] = 'localhost';
 $db['sagsbetadev']['port']     = '5432';
 $db['sagsbetadev']['username'] = 'postgres';
-$db['sagsbetadev']['password'] = '123456';
+$db['sagsbetadev']['password'] = 'postgres';
 $db['sagsbetadev']['database'] = 'sagsbetadev';
 $db['sagsbetadev']['dbdriver'] = 'postgre';
 $db['sagsbetadev']['dbprefix'] = '';
@@ -62,7 +62,7 @@ $db['sagsbetadev']['cachedir'] = '';
 $db['sagsbetadev']['char_set'] = 'utf8';
 $db['sagsbetadev']['dbcollat'] = 'utf8_general_ci';
 $db['sagsbetadev']['swap_pre'] = '';
-$db['sagsbetadev']['autoinit'] = FALSE;
+$db['sagsbetadev']['autoinit'] = TRUE;
 $db['sagsbetadev']['stricton'] = FALSE;
 
 

@@ -1,4 +1,4 @@
-<?php
+<?php 
 include_once APPPATH.'core/operator.php';
 class MainController extends CI_Controller{
 	public $operator;
@@ -8,12 +8,30 @@ class MainController extends CI_Controller{
 		parent::__construct();
 		
 		$this->load->model('operator_model', 'opr');
+		$this->load->library('session');
 	}
 	
-	public function index(){
-		$this->load->view('include/header', $this->data);
-		$this->load->view('login/login');
+	function __destruct(){
+		//$this->session->sess_destroy();
+	}
+	
+	public function loadView($viewName, $data){
+		$this->load->view('include/header', $data);
+		$this->load->view($viewName, $data);
 		$this->load->view('include/footer');
+	}
+	
+	public function checkSession(){
+		if(!is_object($this->session->userdata('operator')))
+			return false;
+		return true;
+	}
+	
+	public function index($error=false){
+		if($error){
+			$this->data->loginfail = true;
+		}
+		$this->loadView("login/login", $this->data);
 	}
 	
 	public function login(){
@@ -23,15 +41,28 @@ class MainController extends CI_Controller{
 		try{
 			$operator = $this->opr->loginOperator($login, $senha);
 			
-			$data['operator'] = $operator;
+			$this->operator = $operator;
+			$this->session->set_userdata("operator", $operator);
 			
-			$this->load->view('include/header', $this->data);
-			$this->load->view('mainviews/home', $this->data);
-			$this->load->view('include/footer');
+			//print_r($this->session->all_userdata());
+			$this->adminHome();
 		} catch(Exception $ex) {
-			$this->index();
+			$this->index(true);
 		}
 	}
 	
+	public function adminHome(){
+		if($this->checkSession()){
+			$this->data->operator = $this->operator;
+			$this->loadView("mainviews/home", $this->data);
+		} else {
+			$this->index();
+		}
+	}
+
+	function logout(){
+		$this->session->sess_destroy();
+		$this->index(false);
+	}
 }
 ?>
