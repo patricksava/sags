@@ -13,7 +13,8 @@
 			<div class="container">
 				<a class="navbar-brand" href="#">SAGS</a>
 				<div class="navbar-form navbar-right">
-					<form name="login-top" class="form-inline" action="#" method="post" >
+					<?php if(!isset($operator)){?>
+					<form name="login-top" class="form-inline" action="<?=$this->config->item('base_url')?>index.php/MainController/login" method="post" >
                         <div class="form-group">
                             <div class="col-lg-12"><input type="text" class="form-control input-sm" placeholder="Login" name="login"/></div>
                         </div>
@@ -24,6 +25,9 @@
                             <div class="col-lg-12"><button class="btn btn-primary marg-left">Entrar</button></div>
                         </div>
 					</form>
+					<?php } else {
+						echo "Logado como: ". $operator->getName();
+					}?>
 				</div>
 			</div>
 		</header>
