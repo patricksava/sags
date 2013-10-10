@@ -14,7 +14,7 @@
 				<a class="navbar-brand" href="#">SAGS</a>
 				<div class="navbar-form navbar-right">
 					<?php if(!isset($operator)){?>
-					<form name="login-top" class="form-inline" action="<?=$this->config->item('basic_url')?>MainController/login" method="post" >
+					<form name="login-top" class="form-inline" action="<?=$this->config->item('basic_url')?>Login/login" method="post" >
                         <div class="form-group <?php if(isset($loginfail)) echo" has-error"?>">
                             <div class="col-lg-12"><input type="text" class="form-control input-sm" placeholder="Login" name="login"/></div>
                         </div>
@@ -28,7 +28,7 @@
 					<?php } else { ?>
 					<span class="login-span"> 
 						Logado como: <?=$operator->getName();?><br /> 
-						<a href="<?=$this->config->item('basic_url')?>MainController/logout">Logout</a>
+						<a href="<?=$this->config->item('basic_url')?>Login/logout">Logout</a>
 					</span>
 					<?php } ?>
 				</div>

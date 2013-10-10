@@ -1,7 +1,7 @@
 
 <div class="row">
 	<div class="col-lg-6 col-lg-push-3 login-middle">
-		<form name="login-middle" class="form-horizontal" action="#"
+		<form name="login-middle" class="form-horizontal" action="<?=$this->config->item('basic_url')?>Login/login"
 			method="post">
 			<div class="form-group <?php if(isset($loginfail)) echo" has-error"?>">
 				<label for="login" class="col-lg-2 control-label"> Login: </label>
