@@ -31,8 +31,8 @@ class Login extends PHPController{
 		}
 	}
 	
-	function logout(){
-		$this->session->sess_destroy();
+	public function logout(){
+		$this->session->destroy();
 		redirect("Login/index");
 	}
 }

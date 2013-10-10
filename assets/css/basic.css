@@ -1,4 +1,4 @@
-@CHARSET "ISO-8859-1";
+@CHARSET "UTF-8";
 
 .navbar-sags{
 	background-color: #EEF;
@@ -17,8 +17,12 @@
 	width: 1090px;
 }
 
+.middle-content{
+	margin-top:10px;
+}
+
 .left-action-bar{
-    margin-top:30px;
+    margin-top:10px;
     border-right-style:solid;
     border-right-width:1px;
     border-right-color:#EEF;

@@ -1,12 +1,13 @@
+
 <div class="col-lg-2  left-action-bar">
 	<h4 class="menu-title">Menu Lateral</h4>
 	<hr />
-	<ul class="">
-		<li><a href="#">Link 1</a></li>
-		<li><a href="#">Link 2</a></li>
-		<li><a href="#">Link 3</a></li>
-		<li><a href="#">Link 4</a></li>
-		<li><a href="#">Link 5</a></li>
-		<li><a href="#">Link 6</a></li>
+	<ul class="nav nav-pills nav-stacked">
+		<li><a href="#">Cadastro de Associado</a></li>
+		<li><a href="<?=$this->config->item('basic_url')?>MainController/searchAssociate">Buscar Associado</a></li>
+		<li><a href="#">Nova Doa&ccedil;&atilde;o</a></li>
+		<li><a href="#">Clubes Livro/Artes</a></li>
+		<li><a href="#">Cestas B&aacute;sicas</a></li>
+		<li><a href="#">S&oacute;cios da Casa</a></li>
 	</ul>
 </div>
