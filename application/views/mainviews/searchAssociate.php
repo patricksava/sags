@@ -13,7 +13,7 @@
 		    	<div id="collapseOne" class="panel-collapse collapse in">
 		      		<div class="panel-body">
 			      		<div class="row">
-			      			<form name="login-middle" class="form-horizontal" action="<?=$this->config->item('basic_url')?>Login/login" method="post">
+			      			<form name="login-middle" class="form-horizontal" action="<?=$this->config->item('basic_url')?>MainController/searchAssociate" method="post">
 									
 								<input type="hidden" name="is_request" value="1" />
 								<div class="col-lg-6">
@@ -45,7 +45,7 @@
 						
 									<div class="form-group">
 										<div class="col-lg-10 col-lg-offset-2">
-											<button class="btn btn-primary">Entrar</button>
+											<button class="btn btn-default">Entrar</button>
 										</div>
 									</div>
 								</div>
@@ -55,5 +55,32 @@
 		    	</div>
 		  	</div>
 		</div>
+		
+		<?php if(isset($associates)) {?>
+		<div class="middle-content">
+			<br />
+			<h4> Resultados da pesquisa: <span class="badge pull-right"><?=count($associates);?> resultado<?=(count($associates)>1)?"s":null;?></span></h4>
+			<?php if(count($associates)>0) {?>
+				<table class="table table-condensed table-hover">
+				  	<tr>
+				  		<th>Matricula</th>
+				  		<th>Nome Completo</th>
+				  		<th>Email</th>
+				  	</tr>
+				  	
+				  	<?php foreach($associates as $associate) { ?>
+				  		<tr <?=($associate instanceof Partner)? " class=\"success\" ":null;?>>
+				  			<td><?=$associate->getAssociateId();?></td>
+				  			<td><?=$associate->getName();?></td>
+				  			<td><?=$associate->getEmail();?></td>
+				  		</tr>
+				  	<?php } ?>
+				</table>
+				<h6 class="pull-right">*Linhas verdes significam que s&atilde;o s&oacute;cios</h6>
+			<?php } else { ?>
+				<span>Nenhum resultado encontrado!</span>
+			<?php } ?>
+		</div>
+		<?php } ?>
 	</div>
 </div>
