@@ -16,23 +16,22 @@
 			      			<form name="login-middle" class="form-horizontal" action="<?=$this->config->item('basic_url')?>MainController/searchAssociate" method="post">
 									
 								<input type="hidden" name="is_request" value="1" />
-								<div class="col-lg-6">
-									
-										<div class="form-group">
-											<label for="associateName" class="col-lg-2 control-label"> Nome: </label>
-											<div class="col-lg-10">
-												<input type="text" class="form-control" placeholder="Nome do Associado"
-													name="associateName" />
-											</div>
+								<div class="col-lg-6">	
+									<div class="form-group">
+										<label for="associateName" class="col-lg-2 control-label"> Nome: </label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control" placeholder="Nome do Associado"
+												name="associateName" />
 										</div>
-							
-										<div class="form-group">
-											<label for="associateId" class="col-lg-2 control-label"> Matricula: </label>
-											<div class="col-lg-10">
-												<input type="text" class="form-control" placeholder="Matricula do Associado"
-													name="associateId" />
-											</div>
+									</div>
+						
+									<div class="form-group">
+										<label for="associateId" class="col-lg-2 control-label"> Matricula: </label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control" placeholder="Matricula do Associado"
+												name="associateId" />
 										</div>
+									</div>
 								</div>
 								<div class="col-lg-6">					
 									<div class="form-group">
@@ -45,7 +44,7 @@
 						
 									<div class="form-group">
 										<div class="col-lg-10 col-lg-offset-2">
-											<button class="btn btn-default">Entrar</button>
+											<button class="btn btn-default">Buscar</button>
 										</div>
 									</div>
 								</div>
@@ -66,6 +65,7 @@
 				  		<th>Matricula</th>
 				  		<th>Nome Completo</th>
 				  		<th>Email</th>
+				  		<th></th>
 				  	</tr>
 				  	
 				  	<?php foreach($associates as $associate) { ?>
@@ -73,6 +73,10 @@
 				  			<td><?=$associate->getAssociateId();?></td>
 				  			<td><?=$associate->getName();?></td>
 				  			<td><?=$associate->getEmail();?></td>
+				  			<td>
+				  				<a href="<?=$this->config->item('basic_url')."MainController/associateInfo?id=".$associate->getAssociateId();?>">
+				  				<span class="glyphicon glyphicon-info-sign"></span></a>
+				  			</td>
 				  		</tr>
 				  	<?php } ?>
 				</table>

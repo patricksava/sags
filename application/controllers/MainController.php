@@ -27,6 +27,8 @@ class MainController extends PHPController{
 		if($this->input->post('is_request')){
 			$arrayData = null;
 			$arrayData['associateName'] = (strlen($this->input->post('associateName')) > 0)?$this->input->post('associateName'):null;
+			$arrayData['associateCPF'] = (strlen($this->input->post('associateCPF')) > 0)?$this->input->post('associateCPF'):null;
+			$arrayData['associateId'] = (strlen($this->input->post('associateId')) > 0)?$this->input->post('associateId'):null;
 			
  			$associates = $this->associate_model->getAssociatesByVariableData($arrayData);
  			
@@ -36,6 +38,22 @@ class MainController extends PHPController{
 		} else {
 			$this->data->operator = $this->session->userdata("operator");
 			$this->loadView("mainviews/searchAssociate", $this->data);
+		}
+	}
+	
+	public function associateInfo(){
+		if(!$this->checkSession())
+			redirect("Login/index");
+		
+		try{
+			$associate = $this->associate_model->getAssociateById($this->input->get("id"));
+			
+			$this->data->associate = $associate;
+			$this->data->operator = $this->session->userdata("operator");
+			$this->loadView("mainviews/associatePage", $this->data);
+		} catch (Exception $exception){
+			$this->data->operator = $this->session->userdata("operator");
+			$this->loadView("mainviews/error/associateNotFound", $this->data);
 		}
 	}
 }

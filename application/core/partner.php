@@ -38,13 +38,13 @@ class Partner extends Associate{
 	
 	//SETTERS
 	public function setLogin($element){
-		$element = $this->loginPartner;
+		$this->loginPartner = $element;
 	}
 	public function setPayment($element){
-		$element = $this->monthlyPayment;
+		$this->monthlyPayment = $element;
 	}
 	public function setInicialDate($element){
-		$element = $this->inicialDate;
+		$this->inicialDate = $element;
 	}
 }
 ?>
