@@ -20,6 +20,14 @@ class MainController extends PHPController{
 		$this->loadView("mainviews/home", $this->data);
 	}
 	
+	public function insertAssociateForm(){
+		if(!$this->checkSession())
+			redirect("Login/index");
+		
+		$this->data->operator = $this->session->userdata("operator");
+		$this->loadView("mainviews/insertAssociateForm", $this->data);
+	}
+	
 	public function searchAssociate(){
 		if(!$this->checkSession())
 			redirect("Login/index");
@@ -56,5 +64,6 @@ class MainController extends PHPController{
 			$this->loadView("mainviews/error/associateNotFound", $this->data);
 		}
 	}
+	
 }
 ?>

@@ -3,7 +3,7 @@
 	<h4 class="menu-title">Menu Lateral</h4>
 	<hr />
 	<ul class="nav nav-pills nav-stacked">
-		<li><a href="#">Cadastro de Associado</a></li>
+		<li><a href="<?=$this->config->item('basic_url')?>MainController/insertAssociateForm">Cadastro de Associado</a></li>
 		<li><a href="<?=$this->config->item('basic_url')?>MainController/searchAssociate">Buscar Associado</a></li>
 		<li><a href="#">Nova Doa&ccedil;&atilde;o</a></li>
 		<li><a href="#">Clubes Livro/Artes</a></li>

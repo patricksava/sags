@@ -2,18 +2,20 @@
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8">
-		<title>SAGS - Sistema de Auxílio ao Gerenciamento de Servços v1.0</title>
+		<title>SAGS - Sistema de Auxilio ao Gerenciamento de Servicos v1.0</title>
 		
 		<link href="<?=$this->config->item('assets');?>css/basic.css" rel="stylesheet" />
 		<link href="<?=$this->config->item('assets');?>css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="<?=$this->config->item('assets');?>css/themes/base/jquery-ui.css" />
 		<script type="text/javascript" src="<?=$this->config->item('assets');?>js/jquery-2.0.3.min.js"></script>
+		<script type="text/javascript" src="<?=$this->config->item('assets');?>js/ui/jquery-ui.js"></script>
 		<script type="text/javascript" src="<?=$this->config->item('assets');?>js/bootstrap.min.js"></script>
-		
+		<script type="text/javascript" src="<?=$this->config->item('assets');?>js/jquerysettings.js"></script>
 	</head>
 	<body>
 		<header class="navbar navbar-sags" role="banner" id="top">
 			<div class="container">
-				<a class="navbar-brand" href="#">SAGS</a>
+				<a class="navbar-brand" href="<?=$this->config->item('basic_url')?>MainController/adminHome">SAGS</a>
 				<div class="navbar-form navbar-right">
 					<?php if(!isset($operator)){?>
 					<form name="login-top" class="form-inline" action="<?=$this->config->item('basic_url')?>Login/login" method="post" >
