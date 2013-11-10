@@ -11,7 +11,7 @@ class Associate_model extends CI_Model{
 	public function getAssociatesByVariableData($arrayData){
 		$associates = array();
 		
-		$sql = "SELECT * FROM Associado as a, Endereco as en WHERE  a.matriculaassociado = en.matriculaassociado ";
+		$sql = "SELECT * FROM Associado as a WHERE  a.matriculaassociado is not null ";
 		if(is_array($arrayData)){
 			if(isset($arrayData['associateName']))
 				$sql .= " AND nome ilike'%". $arrayData['associateName'] ."%' ";
@@ -20,6 +20,8 @@ class Associate_model extends CI_Model{
 			if(isset($arrayData['associateId']))
 				$sql .= " AND matriculaassociado = ". $arrayData['associateId'];
 		}
+		
+		$sql .= " ORDER BY a.matriculaassociado ASC";
 		$result = $this->db->query($sql)->result();
 		
 		if(count($result) > 0){
@@ -50,6 +52,27 @@ class Associate_model extends CI_Model{
 		} else 
 			throw new Exception("Associate not found");
 		
+	}
+	
+	public function insertAssociate($associate){
+		$sql = "INSERT INTO associado ( nome, datanascimento, estadocivil, identidade, cpf, profissao, email, orgaoident) 
+				VALUES( ?,?,?,?,?,?,?,? ) returning matriculaassociado";
+
+		$arrayValues[] = $associate->getName();
+		$arrayValues[] = $associate->getBirthDate();
+		$arrayValues[] = $associate->getCivilState();
+		$arrayValues[] = $associate->getRG();
+		$arrayValues[] = $associate->getCPF();
+		$arrayValues[] = $associate->getOccupation();
+		$arrayValues[] = $associate->getEmail();
+		$arrayValues[] = $associate->getExpeditor();
+		
+		$result = $this->db->query($sql, $arrayValues);
+		
+		if($result)
+			return $this->db->insert_id();
+		else
+			return false;
 	}
 	
 	public function createNewAssociate($row){

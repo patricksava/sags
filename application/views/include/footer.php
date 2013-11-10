@@ -12,7 +12,10 @@
 			</div>
 			<br />
 			<div class="row">
-                <div class="col-lg-6"><a href="#top">Voltar ao topo</a></div>
+                <div class="col-lg-6">
+                	<?php printDatePtBr();?><br/>
+                	<a href="#top">Voltar ao topo</a>
+                </div>
 				<div class="col-lg-6">
 					<p align="right">Pontifícia Universidade Católica do Rio de Janeiro<br />INF1383 - Banco de Dados I - 2013.2</p>
 				</div>

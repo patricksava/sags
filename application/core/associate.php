@@ -12,7 +12,7 @@ class Associate {
 	private $expeditor;
 	
 	// CONSTRUCTORS
-	public function __construct($associateId, $name, $cpf = null, $occupation = null, $birthDate = null, $email = null, $civilState = null, $rg = null, $expeditor = null){
+	public function __construct($associateId = null, $name = null, $cpf = null, $occupation = null, $birthDate = null, $email = null, $civilState = null, $rg = null, $expeditor = null){
 		$this->setAssociateId($associateId);
 		$this->setName($name);
 		$this->setCPF($cpf);

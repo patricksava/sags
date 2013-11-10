@@ -65,5 +65,33 @@ class MainController extends PHPController{
 		}
 	}
 	
+	public function insertNewAssociate(){
+		if(!$this->checkSession())
+			redirect("Login/index");
+		
+		try{
+			$associate = new Associate();
+			$associate->setName((strlen($this->input->post('associateName')) > 0)?$this->input->post('associateName'):null);
+			$associate->setBirthDate((strlen($this->input->post('associateBirthDate')) > 0)?$this->input->post('associateBirthDate'):null);
+			$associate->setCPF((strlen($this->input->post('associateCPF')) > 0)?$this->input->post('associateCPF'):null);
+			$associate->setRG((strlen($this->input->post('associateRG')) > 0)?$this->input->post('associateRG'):null);
+			$associate->setExpeditor((strlen($this->input->post('associateExpeditor')) > 0)?$this->input->post('associateExpeditor'):null);
+			$associate->setCivilState((strlen($this->input->post('associateEstadoCivil')) > 0)?$this->input->post('associateEstadoCivil'):null);
+			$associate->setEmail((strlen($this->input->post('associateEmail')) > 0)?$this->input->post('associateEmail'):null);
+			$associate->setOccupation((strlen($this->input->post('associateProfissao')) > 0)?$this->input->post('associateProfissao'):null);
+			
+			$newId = $this->associate_model->insertAssociate($associate);
+			
+			if($newId > 0)
+				redirect("MainController/associateInfo?id=$newId");
+			else 
+				throw new Exception();
+			
+		} catch(Exception $ex) {
+			$this->data->operator = $this->session->userdata("operator");
+			$this->loadView("mainviews/error/associateNotInserted", $this->data);
+		}
+	}
+	
 }
 ?>
