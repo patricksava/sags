@@ -29,5 +29,11 @@
 			<div class="col-lg-4"><h5>D.Assinatura: <?=$associate->getInicialDate()?></h5></div>
 		</div>
 		<?php }?>
+		
+		<hr />
+		<div class="row">
+			<div class="col-lg-12"><h5>Endere&ccedil;o: <?=$address->printFullAddress();?></h5></div>
+			<div class="col-lg-4"><h5>CEP:<?=$address->getCEP();?></h5></div>
+		</div>
 	</div>
 </div>

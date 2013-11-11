@@ -10,6 +10,7 @@ class MainController extends PHPController{
 		parent::__construct();
 		
 		$this->load->model('associate_model');
+		$this->load->model('address_model');
 	}
 	
 	public function adminHome(){
@@ -55,8 +56,11 @@ class MainController extends PHPController{
 		
 		try{
 			$associate = $this->associate_model->getAssociateById($this->input->get("id"));
+			$address = $this->address_model->getAddressById($this->input->get("id"));
 			
 			$this->data->associate = $associate;
+			$this->data->address = $address;
+			
 			$this->data->operator = $this->session->userdata("operator");
 			$this->loadView("mainviews/associatePage", $this->data);
 		} catch (Exception $exception){
@@ -80,10 +84,23 @@ class MainController extends PHPController{
 			$associate->setEmail((strlen($this->input->post('associateEmail')) > 0)?$this->input->post('associateEmail'):null);
 			$associate->setOccupation((strlen($this->input->post('associateProfissao')) > 0)?$this->input->post('associateProfissao'):null);
 			
+			$endereco = new Address();
+			$endereco->setRua((strlen($this->input->post('associateRua')) > 0)?$this->input->post('associateRua'):null);
+			$endereco->setNumero((strlen($this->input->post('associateNumero')) > 0)?$this->input->post('associateNumero'):null);
+			$endereco->setComplemento((strlen($this->input->post('associateComplemento')) > 0)?$this->input->post('associateComplemento'):null);
+			$endereco->setBairro((strlen($this->input->post('associateBairro')) > 0)?$this->input->post('associateBairro'):null);
+			$endereco->setCidade((strlen($this->input->post('associateCidade')) > 0)?$this->input->post('associateCidade'):null);
+			$endereco->setEstado((strlen($this->input->post('associateEstado')) > 0)?$this->input->post('associateEstado'):null);
+			$endereco->setCEP((strlen($this->input->post('associateCEP')) > 0)?$this->input->post('associateCEP'):null);
+			
+			
 			$newId = $this->associate_model->insertAssociate($associate);
 			
-			if($newId > 0)
+			if($newId > 0){
+				if(!$this->address_model->insertAddress($newId, $endereco))
+					throw new Exception();
 				redirect("MainController/associateInfo?id=$newId");
+			}
 			else 
 				throw new Exception();
 			

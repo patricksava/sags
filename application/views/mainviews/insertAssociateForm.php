@@ -83,6 +83,70 @@
 						</div>
 					</div>
 				</div>
+				
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="associateRua" class="col-lg-4 control-label"> Rua: </label>
+						<div class="col-lg-8">
+							<input type="text" class="form-control" name="associateRua" id="associateRua"/>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="associateNumero" class="col-lg-4 control-label"> N&uacute;mero: </label>
+						<div class="col-lg-8">
+							<input type="text" class="form-control" name="associateNumero" id="associateNumero"/>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="associateComplemento" class="col-lg-4 control-label"> Complemento: </label>
+						<div class="col-lg-8">
+							<input type="text" class="form-control" name="associateComplemento" id="associateComplemento"/>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="associateCEP" class="col-lg-4 control-label"> CEP: </label>
+						<div class="col-lg-8">
+							<input type="text" class="form-control" name="associateCEP" id="associateCEP"/>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="associateBairro" class="col-lg-4 control-label"> Bairro: </label>
+						<div class="col-lg-8">
+							<input type="text" class="form-control" name="associateBairro" id="associateBairro"/>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="associateCidade" class="col-lg-4 control-label"> Cidade: </label>
+						<div class="col-lg-8">
+							<input type="text" class="form-control" name="associateCidade" id="associateCidade"/>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="associateEstado" class="col-lg-4 control-label"> Estado: </label>
+						<div class="col-lg-8">
+							<input type="text" maxlength=2 class="form-control" name="associateEstado" id="associateEstado"/>
+						</div>
+					</div>
+				</div>
+				
 			</div>
 			<div class="row">
 				<div class="col-lg-12">
