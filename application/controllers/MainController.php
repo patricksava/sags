@@ -9,8 +9,10 @@ class MainController extends PHPController{
 	public function __construct(){
 		parent::__construct();
 		
+		$this->load->model('generic_model');
 		$this->load->model('associate_model');
 		$this->load->model('address_model');
+		$this->load->model('telephone_model');
 	}
 	
 	public function adminHome(){
@@ -57,9 +59,11 @@ class MainController extends PHPController{
 		try{
 			$associate = $this->associate_model->getAssociateById($this->input->get("id"));
 			$address = $this->address_model->getAddressById($this->input->get("id"));
+			$telephones = $this->telephone_model->getTelephonesById($this->input->get("id"));
 			
 			$this->data->associate = $associate;
 			$this->data->address = $address;
+			$this->data->telephones = $telephones;
 			
 			$this->data->operator = $this->session->userdata("operator");
 			$this->loadView("mainviews/associatePage", $this->data);
@@ -93,18 +97,28 @@ class MainController extends PHPController{
 			$endereco->setEstado((strlen($this->input->post('associateEstado')) > 0)?$this->input->post('associateEstado'):null);
 			$endereco->setCEP((strlen($this->input->post('associateCEP')) > 0)?$this->input->post('associateCEP'):null);
 			
+			$telefones = null;
+			if(strlen($this->input->post('associateTelRes')) > 0)
+				$telefones[] = $this->input->post('associateTelRes');
+			if(strlen($this->input->post('associateTelCel')) > 0)
+				$telefones[] = $this->input->post('associateTelCel');
+			if(strlen($this->input->post('associateTelCom')) > 0)
+				$telefones[] = $this->input->post('associateTelCom');
 			
+			$this->generic_model->openTransaction();
 			$newId = $this->associate_model->insertAssociate($associate);
 			
-			if($newId > 0){
-				if(!$this->address_model->insertAddress($newId, $endereco))
-					throw new Exception();
-				redirect("MainController/associateInfo?id=$newId");
-			}
-			else 
-				throw new Exception();
+			$this->address_model->insertAddress($newId, $endereco);
+				
+			if(is_array($telefones))
+				$this->telephone_model->insertTelephones($newId, $telefones);
+				
+			$this->generic_model->commitTransaction();
+			redirect("MainController/associateInfo?id=$newId");
 			
 		} catch(Exception $ex) {
+			$this->generic_model->rollbackTransaction();
+			$this->data->exception = $ex->getMessage();
 			$this->data->operator = $this->session->userdata("operator");
 			$this->loadView("mainviews/error/associateNotInserted", $this->data);
 		}

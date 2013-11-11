@@ -146,8 +146,33 @@
 						</div>
 					</div>
 				</div>
-				
 			</div>
+			<div class="row">
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label for="associateTelRes" class="col-lg-4 control-label"> Tel. Residencial: </label>
+							<div class="col-lg-8">
+								<input type="text" class="form-control" name="associateTelRes" id="associateTelRes"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label for="associateTelCom" class="col-lg-4 control-label"> Tel. Comercial: </label>
+							<div class="col-lg-8">
+								<input type="text" class="form-control" name="associateTelCom" id="associateTelCom"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label for="associateTelCel" class="col-lg-4 control-label"> Tel. Celular: </label>
+							<div class="col-lg-8">
+								<input type="text" class="form-control" name="associateTelCel" id="associateTelCel"/>
+							</div>
+						</div>
+					</div>
+				</div>
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="form-group">

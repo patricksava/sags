@@ -72,7 +72,7 @@ class Associate_model extends CI_Model{
 		if($result)
 			return $this->db->insert_id();
 		else
-			return false;
+			throw new Exception("Falha na insercao do associado");
 	}
 	
 	public function createNewAssociate($row){

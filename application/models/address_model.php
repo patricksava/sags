@@ -34,7 +34,7 @@ class Address_model extends CI_Model{
 		if($this->db->query($sql, $arrayValues))
 			return true;
 		else
-			return false;
+			throw new Exception("Falha na insercao do endereco");
 	}
 	
 	public function createNewAddress($row){

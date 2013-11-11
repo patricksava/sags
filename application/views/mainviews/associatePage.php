@@ -6,6 +6,15 @@
 			<div class="col-lg-4"><h4>Matricula: <?=$associate->getAssociateId()?></h4></div>
 		</div>
 		<hr />
+		<? if(!is_null($telephones)){
+			$i=1; ?>
+		<div class="row">
+			<?php foreach($telephones as $tel){?>
+				<div class="col-lg-4"><h5>Telefone <?=$i++?>: <?=$tel?></h5></div>
+			<?php }?>
+		</div>
+		<? } ?>
+		<hr />
 		<div class="row">
 			<div class="col-lg-4"><h5>Email: <?=$associate->getEmail()?></h5></div>
 			<div class="col-lg-4"><h5>Profiss&atilde;o: <?=$associate->getBirthDate()?></h5></div>
