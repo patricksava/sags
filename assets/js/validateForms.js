@@ -5,7 +5,6 @@ function validateFormAssociado(){
 		//$("#associateName < div").addClass("has-error");
 		flagOk = false;
 	}
-	alert(flagOk);
 	/*
 	//validar cpf - 11 numeros
 	if($("#associateCPF").value != '')
@@ -26,4 +25,8 @@ function validateFormAssociado(){
 		$("#associateForm").submit();
 	else
 		alert("Informacoes invalidas, favor corrigir.");
-}
+};
+
+function validateFormDonationAssociado(){
+	$("#donationForm").submit();
+};

@@ -1,6 +1,5 @@
 <?php 
 require_once APPPATH.'core/PHPController.php';
-require_once APPPATH.'core/operator.php';
 require_once APPPATH.'core/associate.php';
 require_once APPPATH.'core/partner.php';
 

@@ -6,6 +6,22 @@
 			<div class="col-lg-4"><h4>Matricula: <?=$associate->getAssociateId()?></h4></div>
 		</div>
 		<hr />
+		<div class="row action-horizontal-menu">
+			<div class="col-lg-3">
+				<a href="<?=$this->config->item('basic_url')?>DonationController/associateDonationForm?id=<?=$associate->getAssociateId()?>">Cadastrar doa&ccedil;&atilde;o</a>
+			</div>
+			<div class="col-lg-3">
+				<a href="<?=$this->config->item('basic_url')?>PremiumAssociateController/premiumAssociateManagementPage?id=<?=$associate->getAssociateId()?>">Registro de S&oacute;cio</a>
+			</div>
+			<div class="col-lg-3">	
+				<a href="<?=$this->config->item('basic_url')?>ClubController/clubManagementPage?id=<?=$associate->getAssociateId()?>">Registro de Clubes</a>
+			</div>
+			<div class="col-lg-3">
+				<a href="<?=$this->config->item('basic_url')?>BasicPackageController/basicPackageManagementPage?id=<?=$associate->getAssociateId()?>">Registro de Cesta B&aacute;sica</a>
+			</div>
+		</div>
+		
+		<hr />
 		<? if(!is_null($telephones)){
 			$i=1; ?>
 		<div class="row">
@@ -14,7 +30,7 @@
 			<?php }?>
 		</div>
 		<? } ?>
-		<hr />
+		
 		<div class="row">
 			<div class="col-lg-4"><h5>Email: <?=$associate->getEmail()?></h5></div>
 			<div class="col-lg-4"><h5>Profiss&atilde;o: <?=$associate->getBirthDate()?></h5></div>
