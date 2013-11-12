@@ -14,5 +14,15 @@ class donation_model extends CI_Model{
 		else 
 			throw new Exception("Falha ao registrar doacao");
 	}
+	
+	public function insertDonationWithoutAssociateId($donation){
+		$sql = "INSERT INTO doacao (valor, descricao) VALUES (?,?)";
+		$arrayValues = array($donation->getValue(), $donation->getDescription());
+		if($this->db->query($sql, $arrayValues))
+			return true;
+		else
+			throw new Exception("Falha ao registrar doacao");
+		
+	}
 }
 ?>

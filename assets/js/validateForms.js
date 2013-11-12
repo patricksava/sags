@@ -30,3 +30,6 @@ function validateFormAssociado(){
 function validateFormDonationAssociado(){
 	$("#donationForm").submit();
 };
+function validateFormDonation(){
+	$("#donationForm").submit();
+};

@@ -30,7 +30,6 @@ class DonationController extends PHPController{
 			redirect("Login/index");
 		
 		try{
-			echo "IDASsociate: ". $this->input->post("donationAssociateId");
 			$donation = new Donation(
 						null, 
 						$this->input->post("donationAssociateId"), 
@@ -48,6 +47,29 @@ class DonationController extends PHPController{
 			$this->data->operator = $this->session->userdata("operator");
 			$this->loadView("mainviews/error/genericpage", $this->data);
 		}
+	}
+	
+	public function donationForm(){
+		if(!$this->checkSession())
+			redirect("Login/index");
+		
+		$this->data->operator = $this->session->userdata("operator");
+		$this->loadView("donation/donationForm", $this->data);
+	}
+	
+	public function registerDonation(){
+		if(!$this->checkSession())
+			redirect("Login/index");
+		
+		$valorEst = $this->input->post("donationValue");
+		$descricao = $this->input->post("donationDescription");
+		
+		$doacao = new Donation(null, null, $descricao, $valorEst);
+		
+		$this->donation_model->insertDonationWithoutAssociateId($doacao);
+		
+		$this->data->operator = $this->session->userdata("operator");
+		$this->loadView("donation/donationRegistered", $this->data);
 	}
 }
 ?>
