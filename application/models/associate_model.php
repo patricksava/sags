@@ -2,6 +2,7 @@
 require_once APPPATH.'core/associate.php';
 require_once APPPATH.'core/partner.php';
 
+
 class Associate_model extends CI_Model{
 	
 	public function __construct(){
@@ -38,19 +39,19 @@ class Associate_model extends CI_Model{
 		return $associates;
 	}
 	
-	public function getAssociateById($id){
+	public function getAssociateById($id, $isPartner=0){
 		$sql = "Select * From Associado Where matriculaassociado = $id";
 		$result = $this->db->query($sql)->result();
 		if(count($result) > 0){
 			foreach($result as $row){
-				if(is_null($row->loginsocio))
+				if(is_null($row->loginsocio) && !$isPartner)
 					$associate = $this->createNewAssociate($row);
 				else 
 					$associate = $this->createNewPartner($row);
 			}
 			return $associate;
 		} else 
-			throw new Exception("Associate not found");
+			throw new Exception("Associado n&atilde;o encontrado.");
 		
 	}
 	
@@ -72,7 +73,17 @@ class Associate_model extends CI_Model{
 		if($result)
 			return $this->db->insert_id();
 		else
-			throw new Exception("Falha na insercao do associado");
+			throw new Exception("Falha na inserção do associado");
+	}
+	
+	public function insertNewPartner($partner){
+		$sql = "UPDATE associado SET loginsocio = ?, valormensal = ?, dataingresso = now() WHERE matriculaassociado = ?";
+		$result = $this->db->query($sql, array($partner->getLogin(), $partner->getPayment(), $partner->getAssociateId()));
+
+		if($result)
+			return true;
+		else
+			throw new Exception("Falha na atualização dos dados do associado");
 	}
 	
 	public function createNewAssociate($row){

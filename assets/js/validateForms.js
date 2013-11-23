@@ -33,3 +33,6 @@ function validateFormDonationAssociado(){
 function validateFormDonation(){
 	$("#donationForm").submit();
 };
+function validateFormNovoSocio(){
+	$("#newPartnerForm").submit();
+};

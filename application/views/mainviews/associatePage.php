@@ -45,20 +45,52 @@
 			<div class="col-lg-4"><h5>Est. Civil: <?=$associate->getCivilState()?></h5></div>
 		</div>
 		
-		<?php if($associate instanceof Partner) {?>
-		<hr />
-		<div class="row">
-			<div class="col-lg-12"><h4>Dados de s&oacute;cio</h4></div>
-			<div class="col-lg-4"><h5>Login: <?=$associate->getLogin()?></h5></div>
-			<div class="col-lg-4"><h5>Mensalidade: <?=$associate->getPayment()?></h5></div>
-			<div class="col-lg-4"><h5>D.Assinatura: <?=$associate->getInicialDate()?></h5></div>
-		</div>
-		<?php }?>
-		
 		<hr />
 		<div class="row">
 			<div class="col-lg-12"><h5>Endere&ccedil;o: <?=$address->printFullAddress();?></h5></div>
 			<div class="col-lg-4"><h5>CEP:<?=$address->getCEP();?></h5></div>
 		</div>
+		<?php if($associate instanceof Partner) {?>
+			<hr />
+			<div class="row">
+				<div class="col-lg-12"><h4>Dados de s&oacute;cio</h4></div>
+				<div class="col-lg-4"><h5>Login: <?=$associate->getLogin()?></h5></div>
+				<div class="col-lg-4"><h5>Mensalidade: <?=$associate->getPayment()?></h5></div>
+				<div class="col-lg-4"><h5>D.Assinatura: <?=$associate->getInicialDate()?></h5></div>
+			</div>
+		<?php } else { ?>
+			<hr />
+			<div class="row">
+				<div class="col-lg-12">
+					<h5>Associado n&atilde;o participante do programa S&oacute;cios da Casa</h5>
+					<p>Para torn&aacute;-lo s&oacute;cio da casa, preencha e submeta os dados abaixo:</p>
+					<br />
+				</div>
+				<form name="newPartnerForm" class="form-horizontal" id="newPartnerForm" action="<?=$this->config->item('basic_url');?>PartnerController/NewPartnerSubscription" method="post">
+					<input type="hidden" name="associateId" value="<?=$associate->getAssociateId()?>" />
+					<div class="col-lg-5">
+						<div class="form-group">
+							<label for="newPartnerLogin" class="col-lg-3 control-label"> Login: </label>
+							<div class="col-lg-9">
+								<input type="text" class="form-control" id="newPartnerLogin" name="newPartnerLogin" />
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="form-group">
+							<label for="newPartnerPayment" class="col-lg-6 control-label"> Valor: </label>
+							<div class="col-lg-6">
+								<input type="text" class="form-control" id="newPartnerPayment" name="newPartnerPayment" />
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2 col-lg-offset-1">
+						<div class="form-group">
+							<input type="button" class="btn btn-primary" onclick="validateFormNovoSocio()" value="Submeter" />
+						</div>
+					</div>
+				</form>
+			</div>
+		<?php }?>
 	</div>
 </div>
