@@ -42,5 +42,7 @@ define('SOCIOCASA', 'SOC');
 define('CESTABASICA', 'CBS');
 define('CLUBELIVRO', 'CBL');
 define('CLUBEARTE', 'CBA');
+
+define('MODO_PAGAMENTO_ESPECIE', 'dinheiro');
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

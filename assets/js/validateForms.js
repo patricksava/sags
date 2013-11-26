@@ -36,3 +36,6 @@ function validateFormDonation(){
 function validateFormNovoSocio(){
 	$("#newPartnerForm").submit();
 };
+function validateFormConfirmaPagamentoSocio(){
+	$("#confirmPaymentForm").submit();
+}

@@ -15,9 +15,9 @@ class Payment {
 		$this->setPaymentNumber($numpag);
 		$this->setServiceCode($servico);
 		$this->setAssociateId($matr);
-		$this->setValuePayed($vpago);
+		$this->setValuePaid($vpago);
 		$this->setValueExpected($vpagar);
-		$this->setDatePayed($dtpago);
+		$this->setDatePaid($dtpago);
 		$this->setDateLimit($dtvenc);
 		$this->setPaymentMode($modpag);
 	}
@@ -31,13 +31,13 @@ class Payment {
 	public function setAssociateId($elem){
 		$this->associateId = $elem;
 	}
-	public function setValuePayed($elem){
+	public function setValuePaid($elem){
 		$this->valueGiven = $elem;
 	}
 	public function setValueExpected($elem){
 		$this->valueExpected = $elem;
 	}
-	public function setDatePayed($elem){
+	public function setDatePaid($elem){
 		$this->dateOfPayment = $elem;
 	}
 	public function setDateLimit($elem){
@@ -57,13 +57,13 @@ class Payment {
 	public function getAssociateId(){
 		return $this->associateId;
 	}
-	public function getValuePayed(){
+	public function getValuePaid(){
 		return $this->valueGiven;
 	}
 	public function getValueExpected(){
 		return $this->valueExpected;
 	}
-	public function getDatePayed(){
+	public function getDatePaid(){
 		return $this->dateOfPayment;
 	}
 	public function getDateLimit(){
@@ -74,8 +74,8 @@ class Payment {
 	}
 	
 	
-	public function isPayed(){
-		if(!is_null($this->getDatePayed()))
+	public function isPaid(){
+		if(!is_null($this->getDatePaid()))
 			return true;
 		else 
 			return false;

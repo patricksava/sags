@@ -28,12 +28,12 @@
 				  			<td><?=$payment->getPaymentNumber();?></td>
 				  			<td><?=$payment->getDateLimit();?></td>
 				  			<td><?=$payment->getValueExpected();?></td>
-				  			<td><?=(!$payment->isPayed())?$payment->getDatePayed():'Nao pago';?></td>
-				  			<td><?=(!$payment->isPayed())?$payment->getValuePayed():'Nao pago';?></td>
+				  			<td><?=($payment->isPaid())?$payment->getDatePaid():'Nao pago';?></td>
+				  			<td><?=($payment->isPaid())?$payment->getValuePaid():'Nao pago';?></td>
 				  			<td>
-				  				<?php if(!$payment->isPayed()){ ?>
+				  				<?php if(!$payment->isPaid()){ ?>
 				  					<a href="<?= $this->config->item('basic_url')."PaymentController/confirmPayment?number=".$payment->getPaymentNumber();?>" >
-				  					<span class="glyphicon glyphicon-info-sign"></span></a>
+				  					<span class="glyphicon glyphicon-usd"></span></a>
 				  				<?php } ?>
 				  			</td>
 				  		</tr>
