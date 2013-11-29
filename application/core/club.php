@@ -45,5 +45,14 @@ class Club{
 	public function getTitle(){
 		return $this->title;
 	}
+	
+	public function getClubPaymentCode(){
+		if($this->clubcode == "Clube Livro")
+			return "CBL";
+		else if($this->clubcode == 'Clube Arte')
+			return "CBA";
+		else
+			return null;
+	}
 }
 ?>

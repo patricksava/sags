@@ -1,5 +1,6 @@
 <?php
 require_once APPPATH."core/payment.php";
+require_once APPPATH."core/club.php";
 
 class payment_model extends CI_Model{
 	public function __construct(){
@@ -36,14 +37,25 @@ class payment_model extends CI_Model{
 	
 	public function registerPayment($numPayment, $paidValue, $loginOp, $paymentMode){
 		$sql = "UPDATE mensalidade 
-				SET valorpago = ?, modopagamento = ?, loginoperator = ?, datapagamento = now()
+				SET valorpago = ?, modopagamento = ?, loginoperador = ?, datapagamento = now()
 				WHERE numpagamento = ?";
+
 		$result = $this->db->query($sql, array($paidValue, $paymentMode, $loginOp, $numPayment));
-		
-		if($result->num_rows()>0)
+
+		if($result)
 			return true;
 		else
 			throw new Exception("Falha na insercao dos valores do pagamento");
+	}
+	
+	public function insertFirstPaymentClub($id, $club){
+		$sql = "INSERT INTO mensalidade (matriculaassociado, codservico, valorpagar, datavencimento)
+				VALUES (?,?,?,(now()+'5days'::interval)::date)";
+		$result = $this->db->query($sql, array($id, $club->getClubPaymentCode(), $club->getPrice()));
+		if($result)
+			return true;
+		else 
+			throw new Exception("Falha ao registrar primeiro boleto");
 	}
 	
 	public function createPaymentsPremium(){

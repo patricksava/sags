@@ -40,5 +40,39 @@ class ClubController extends PHPController{
 			$this->loadView("mainviews/error/genericpage", $this->data);
 		}
 	}
+	
+	public function registerNewParticipant(){
+		if(!$this->checkSession())
+			redirect("Login/index");
+		
+		try{
+			$id = $this->input->get('id');
+			$clubCode = $this->input->get('club');
+			if(strlen($id)==0 || strlen($clubCode)==0)
+				throw new Exception("Informacoes incompletas.");
+			
+			$this->generic_model->openTransaction();
+			if($clubCode == "cbl"){
+				$this->club_model->registerInBookClub($id);
+				$club = $this->club_model->getClubInfo('Clube Livro', date('m'), date('Y'));
+			}
+			else if($clubCode == "cba"){
+				$this->club_model->registerInArtClub($id);
+				$club = $this->club_model->getClubInfo('Clube Arte' , date('m'), date('Y'));
+			}
+			else 
+				throw new Exception("Codigo de clube invalido");
+			
+			$this->payment_model->insertFirstPaymentClub($id, $club);
+			
+			$this->generic_model->commitTransaction();
+			redirect("ClubController/ClubManagementPage?id=$id");
+		} catch(Exception $ex) {
+			$this->generic_model->rollbackTransaction();
+			$this->data->exception = $ex->getMessage();
+			$this->data->operator = $this->session->userdata("operator");
+			$this->loadView("mainviews/error/genericpage", $this->data);
+		}
+	}
 }
 ?>

@@ -63,12 +63,16 @@ class Payment {
 		return $this->associateId;
 	}
 	public function getValuePaid(){
+		if($this->valueGiven == null)
+			return "-----";
 		return $this->valueGiven;
 	}
 	public function getValueExpected(){
 		return $this->valueExpected;
 	}
 	public function getDatePaid(){
+		if($this->dateOfPayment==null)
+			return "-----";
 		return $this->dateOfPayment;
 	}
 	public function getDateLimit(){
@@ -83,7 +87,7 @@ class Payment {
 	
 	
 	public function isPaid(){
-		if(!is_null($this->getDatePaid()))
+		if(!is_null($this->dateOfPayment))
 			return true;
 		else 
 			return false;

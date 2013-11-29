@@ -19,6 +19,26 @@ class Club_model extends CI_Model{
 		return $club;
 	}
 	
+	public function registerInBookClub($id){
+		$sql = "INSERT INTO frequenta(matriculaassociado, codclube, mes, ano) VALUES (?,?,?,?)";
+		$result = $this->db->query($sql, array($id, 'Clube Livro', date('m'), date('Y')));
+		
+		if($result)
+			return true;
+		else
+			throw new Exception("Falha ao cadastrar participante");
+	}
+	
+	public function registerInArtClub($id){
+		$sql = "INSERT INTO frequenta(matriculaassociado, codclube, mes, ano) VALUES (?,?,?,?)";
+		$result = $this->db->query($sql, array($id, 'Clube Arte', date('m'), date('Y')));
+	
+		if($result)
+			return true;
+		else
+			throw new Exception("Falha ao cadastrar participante");
+	}
+	
 	public function createClub($res){
 		foreach($res as $arr)
 			return new Club(
