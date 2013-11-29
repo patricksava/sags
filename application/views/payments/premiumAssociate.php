@@ -20,6 +20,7 @@
 				  		<th>Valor a pagar</th>
 				  		<th>Data Pagamento</th>
 				  		<th>Valor pago</th>
+				  		<th>Recebido por</th>
 				  		<th>A&ccedil;&otilde;es</th>
 				  	</tr>
 				  	
@@ -30,6 +31,7 @@
 				  			<td><?=$payment->getValueExpected();?></td>
 				  			<td><?=($payment->isPaid())?$payment->getDatePaid():'Nao pago';?></td>
 				  			<td><?=($payment->isPaid())?$payment->getValuePaid():'Nao pago';?></td>
+				  			<td><?=($payment->isPaid())?$payment->getLoginOperator():'----------';?></td>
 				  			<td>
 				  				<?php if(!$payment->isPaid()){ ?>
 				  					<a href="<?= $this->config->item('basic_url')."PaymentController/confirmPayment?number=".$payment->getPaymentNumber();?>" >

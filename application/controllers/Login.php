@@ -7,6 +7,8 @@ class Login extends PHPController{
 		parent::__construct();
 	
 		$this->load->model('operator_model', 'opr');
+		$this->load->model('payment_model');
+		$this->load->model('generic_model');
 	}
 	
 	public function index($error=false){
@@ -22,9 +24,9 @@ class Login extends PHPController{
 
 		try{
 			$operator = $this->opr->loginOperator($login, $senha);
-
 			$this->session->set_userdata("operator", $operator);
-			//print_r($this->session->all_userdata());
+			
+			$this->createPayments();
 			redirect("MainController/adminHome");
 		} catch(Exception $ex) {
 			$this->index(true);
@@ -34,6 +36,23 @@ class Login extends PHPController{
 	public function logout(){
 		$this->session->destroy();
 		redirect("Login/index");
+	}
+	
+	private function createPayments(){
+		//Dia de criar pagamentos
+		if(date('d') == 5){
+			try{
+				$this->generic_model->openTransaction();
+				$this->payment_model->createPaymentsPremium();
+				$this->payment_model->createPaymentsClubs();
+				$this->payment_model->createPaymentsPackages();
+				$this->generic_model->commitTransaction();
+			} catch(Exception $ex) {
+				$this->generic_model->rollbackTransaction();
+				$this->data->exception = $ex->getMessage();
+				$this->loadView("mainviews/error/genericpage", $this->data);
+			}
+		}
 	}
 }
 ?>

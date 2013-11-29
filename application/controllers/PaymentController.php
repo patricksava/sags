@@ -46,7 +46,7 @@ class PaymentController extends PHPController{
 			$numeroPagamento = $this->input->post("paymentNumber");
 			$valorPago = $this->input->post("paidValue");
 			$this->generic_model->openTransaction();
-			$this->payment_model->registerPayment($numeroPagamento, $valorPago, MODO_PAGAMENTO_ESPECIE);
+			$this->payment_model->registerPayment($numeroPagamento, $valorPago, $operator->getLogin(), MODO_PAGAMENTO_ESPECIE);
 			$this->generic_model->commitTransaction();
 			
 			$this->data->operator = $operator;

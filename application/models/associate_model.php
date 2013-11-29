@@ -73,7 +73,7 @@ class Associate_model extends CI_Model{
 		if($result)
 			return $this->db->insert_id();
 		else
-			throw new Exception("Falha na inserção do associado");
+			throw new Exception("Falha na insercao do associado");
 	}
 	
 	public function insertNewPartner($partner){
@@ -83,7 +83,7 @@ class Associate_model extends CI_Model{
 		if($result)
 			return true;
 		else
-			throw new Exception("Falha na atualização dos dados do associado");
+			throw new Exception("Falha na atualizacao dos dados do associado");
 	}
 	
 	public function createNewAssociate($row){

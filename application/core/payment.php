@@ -8,10 +8,11 @@ class Payment {
 	private $dateOfPayment;
 	private $dateLimit;
 	private $paymentMode;
+	private $loginOperator;
 	
 	public function __construct($numpag = null, $servico = null, $matr = null, 
 			$vpago = null, $vpagar = null, $dtpago = null, 
-			$dtvenc = null, $modpag = null){
+			$dtvenc = null, $modpag = null, $login = null){
 		$this->setPaymentNumber($numpag);
 		$this->setServiceCode($servico);
 		$this->setAssociateId($matr);
@@ -20,6 +21,7 @@ class Payment {
 		$this->setDatePaid($dtpago);
 		$this->setDateLimit($dtvenc);
 		$this->setPaymentMode($modpag);
+		$this->setLoginOperator($login);
 	}
 	
 	public function setPaymentNumber($elem){
@@ -46,6 +48,9 @@ class Payment {
 	public function setPaymentMode($elem){
 		$this->paymentMode = $elem;
 	}
+	public function setLoginOperator($elem){
+		$this->loginOperator = $elem;
+	}
 	
 	
 	public function getPaymentNumber(){
@@ -71,6 +76,9 @@ class Payment {
 	}
 	public function getPaymentMode(){
 		return $this->paymentMode;
+	}
+	public function getLoginOperator(){
+		return $this->loginOperator;
 	}
 	
 	

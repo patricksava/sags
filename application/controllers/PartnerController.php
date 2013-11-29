@@ -49,7 +49,8 @@ class PartnerController extends PHPController{
 			
 			$partner  = $this->associate_model->getAssociateById($this->input->get('id'));
 			$payments = $this->payment_model->getPaymentHistoryByIdAndService($partner->getAssociateId(), SOCIOCASA);
-			
+			if(is_null($payments))
+				throw new Exception("Nada encontrado");
 			$this->data->payments = $payments;
 			$this->data->associate = $partner;
 			$this->data->operator = $this->session->userdata("operator");

@@ -11,7 +11,7 @@ class payment_model extends CI_Model{
 		$resultSet = $this->db->query($sql)->result_array();
 		
 		if(count($resultSet) == 0)
-			throw new Exception("Nada encontrado.");
+			return null;
 		
 		$payments = array();
 		foreach($resultSet as $row)
@@ -22,7 +22,7 @@ class payment_model extends CI_Model{
 	
 	public function getPaymentByNumber($number){
 		$sql = "SELECT numpagamento, codServico as serv, matriculaassociado as matr, valorpago, valorpagar, 
-					datapagamento as dtpago, datavencimento as dtvenc, modopagamento as modopag 
+					datapagamento as dtpago, datavencimento as dtvenc, modopagamento as modopag, loginoperador as loginop
 				FROM mensalidade WHERE numpagamento = $number";
 		$resultSet = $this->db->query($sql);
 		
@@ -34,16 +34,54 @@ class payment_model extends CI_Model{
 			throw new Exception("Mensalidade nao encontrada");
 	}
 	
-	public function registerPayment($numPayment, $paidValue, $paymentMode){
+	public function registerPayment($numPayment, $paidValue, $loginOp, $paymentMode){
 		$sql = "UPDATE mensalidade 
-				SET valorpago = ?, modopagamento = ?,datapagamento = now()
+				SET valorpago = ?, modopagamento = ?, loginoperator = ?, datapagamento = now()
 				WHERE numpagamento = ?";
-		$result = $this->db->query($sql, array($paidValue, $paymentMode, $numPayment));
+		$result = $this->db->query($sql, array($paidValue, $paymentMode, $loginOp, $numPayment));
 		
-		if($result)
+		if($result->num_rows()>0)
 			return true;
 		else
 			throw new Exception("Falha na insercao dos valores do pagamento");
+	}
+	
+	public function createPaymentsPremium(){
+		$sql = "SELECT gera_boletos_socios()";
+		$result = $this->db->query($sql);
+		if($result->num_rows()>0)
+			return true;
+		else
+			throw new Exception("Falha na criação dos pagamentos dos socios da casa");
+	}
+	
+	public function createPaymentsClubs(){
+		$this->createPaymentsClubBook();
+		$this->createPaymentsClubArt();
+	}
+	
+	public function createPaymentsPackages(){
+		//TODO: implementar criacao de pagamentos de cesta!
+	}
+	
+	private function createPaymentsClubBook(){
+		$sql = "SELECT gera_boletos_clube_livro()";
+		$result = $this->db->query($sql);
+	
+		if($result->num_rows()>0)
+			return true;
+		else
+			throw new Exception("Falha na criação dos pagamentos do clube do livro");
+	}
+	
+	private function createPaymentsClubArt(){
+		$sql = "SELECT gera_boletos_clube_artes()";
+		$result = $this->db->query($sql);
+	
+		if($result->num_rows()>0)
+			return true;
+		else
+			throw new Exception("Falha na criação dos pagamentos do clube de arte");
 	}
 	
 	public function createNewPayment($arrayValues){
@@ -55,7 +93,8 @@ class payment_model extends CI_Model{
 				$arrayValues['valorpagar'],
 				$arrayValues['dtpago'],
 				$arrayValues['dtvenc'],
-				$arrayValues['modopag']
+				$arrayValues['modopag'], 
+				$arrayValues['loginop']
 		);
 	}
 }

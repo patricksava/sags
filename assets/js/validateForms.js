@@ -39,3 +39,8 @@ function validateFormNovoSocio(){
 function validateFormConfirmaPagamentoSocio(){
 	$("#confirmPaymentForm").submit();
 }
+
+function goBack()
+{
+	window.history.back();
+}
