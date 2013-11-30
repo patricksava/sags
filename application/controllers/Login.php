@@ -34,6 +34,9 @@ class Login extends PHPController{
 	}
 	
 	public function logout(){
+		if(!$this->checkSession())
+			redirect("Login/index");
+		
 		$this->session->destroy();
 		redirect("Login/index");
 	}

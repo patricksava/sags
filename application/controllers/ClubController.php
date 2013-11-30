@@ -53,11 +53,11 @@ class ClubController extends PHPController{
 			
 			$this->generic_model->openTransaction();
 			if($clubCode == "cbl"){
-				$this->club_model->registerInBookClub($id);
+				//$this->club_model->registerInBookClub($id);
 				$club = $this->club_model->getClubInfo('Clube Livro', date('m'), date('Y'));
 			}
 			else if($clubCode == "cba"){
-				$this->club_model->registerInArtClub($id);
+				//$this->club_model->registerInArtClub($id);
 				$club = $this->club_model->getClubInfo('Clube Arte' , date('m'), date('Y'));
 			}
 			else 
