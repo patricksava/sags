@@ -16,7 +16,7 @@ function printDatePtBr(){
 
 		case 1: $mes = "Janeiro"; break;
 		case 2: $mes = "Fevereiro"; break;
-		case 3: $mes = "Março"; break;
+		case 3: $mes = "Mar&ccedil;o"; break;
 		case 4: $mes = "Abril"; break;
 		case 5: $mes = "Maio"; break;
 		case 6: $mes = "Junho"; break;
@@ -36,11 +36,11 @@ function printDatePtBr(){
 
 		case 0: $semana = "Domingo"; break;
 		case 1: $semana = "Segunda Feira"; break;
-		case 2: $semana = "Terça Feira"; break;
+		case 2: $semana = "Ter&ccedil;a Feira"; break;
 		case 3: $semana = "Quarta Feira"; break;
 		case 4: $semana = "Quinta Feira"; break;
 		case 5: $semana = "Sexta Feira"; break;
-		case 6: $semana = "Sábado"; break;
+		case 6: $semana = "S&aacute;bado"; break;
 
 	}
 	//Agora basta imprimir na tela...

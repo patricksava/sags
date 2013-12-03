@@ -44,5 +44,8 @@ define('CLUBELIVRO', 'CBL');
 define('CLUBEARTE', 'CBA');
 
 define('MODO_PAGAMENTO_ESPECIE', 'dinheiro');
+
+define('CLUBE_DO_LIVRO', 'livro');
+define('CLUBE_DE_ARTE', 'arte');
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

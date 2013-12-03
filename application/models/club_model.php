@@ -11,11 +11,39 @@ class Club_model extends CI_Model{
 		$sql = "SELECT * FROM dadosclube WHERE codclube = ? AND mes = ? AND ano = ?";
 		$result = $this->db->query($sql, array($club, $month, $year));
 		$club = null;
-		if($result->num_rows()>0)
-			$club = $this->createClub($result->result_array());
+		if($result->num_rows()>0){
+			$temp = $result->result_array();
+			$club = $this->createClub($temp[0]);
+		}
 		else 
 			$club = $this->createClub(array('codclube'=>$club, 'mes'=>$month, 'ano'=>$year, 'valor'=>0, 'titulo'=>'Nao definido'));
 		
+		return $club;
+	}
+	
+	public function getLast5ProductsClubBook(){
+		$sql = "SELECT * FROM clube_livro_ultimos_5_meses";
+		$result = $this->db->query($sql);
+		$club = null;
+		if($result->num_rows()>0)
+			foreach($result->result_array() as $row){
+				$club[] = $this->createClub($row);
+				$club[count($club)-1]->setParticipants($row['count']);
+			}
+	
+		return $club;
+	}
+	
+	public function getLast5ProductsClubArt(){
+		$sql = "SELECT * FROM clube_arte_ultimos_5_meses";
+		$result = $this->db->query($sql);
+		$club = null;
+		if($result->num_rows()>0)
+			foreach($result->result_array() as $row){
+				$club[] = $this->createClub($row);
+				$club[count($club)-1]->setParticipants($row['count']);
+			}
+	
 		return $club;
 	}
 	
@@ -39,8 +67,7 @@ class Club_model extends CI_Model{
 			throw new Exception("Falha ao cadastrar participante");
 	}
 	
-	public function createClub($res){
-		foreach($res as $arr)
+	public function createClub($arr){
 			return new Club(
 					$arr['codclube'],
 					$arr['mes'],

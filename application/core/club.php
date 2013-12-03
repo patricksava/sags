@@ -5,6 +5,7 @@ class Club{
 	private $year;
 	private $price;
 	private $title;
+	private $participants;
 	
 	public function __construct($clubcode, $month, $year, $price = null, $title = null){
 		$this->clubcode = $clubcode;
@@ -29,6 +30,10 @@ class Club{
 	public function setTitle($elem){
 		$this->title = $elem;
 	}
+	public function setParticipants($elem){
+		$this->participants = $elem;
+	}	
+	
 	
 	public function getClubCode(){
 		return $this->clubcode;
@@ -44,6 +49,9 @@ class Club{
 	}
 	public function getTitle(){
 		return $this->title;
+	}
+	public function getParticipants(){
+		return $this->participants;
 	}
 	
 	public function getClubPaymentCode(){

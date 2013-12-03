@@ -1,4 +1,5 @@
 function validateFormAssociado(){
+	//TODO: Implementar validacoes de dados de novos associados
 	flagOk = true;
 	//validar nome - not null
 	if($("#associateName").value == ''){
@@ -28,16 +29,35 @@ function validateFormAssociado(){
 };
 
 function validateFormDonationAssociado(){
+	//TODO: Implementar validacoes de doacao por associado
 	$("#donationForm").submit();
 };
 function validateFormDonation(){
+	//TODO: Implementar validacoes de doacao anonima
 	$("#donationForm").submit();
 };
 function validateFormNovoSocio(){
+	//TODO: Implementar validacoes de novo socio
 	$("#newPartnerForm").submit();
 };
 function validateFormConfirmaPagamentoSocio(){
+	//TODO: Implementar validacoes de pagamento
 	$("#confirmPaymentForm").submit();
+}
+function validateFormNovoProdutoClube(){
+	var flagOk = true;
+	
+	if($("#titulo").value == ''){
+		flagOk = false;
+	}
+	if($("#value").value == ''){
+		flagOk = false;
+	}
+	
+	if( flagOk )
+		$("#newProductForm").submit();
+	else
+		alert("Informacoes invalidas, favor corrigir.");
 }
 
 function goBack()

@@ -74,5 +74,67 @@ class ClubController extends PHPController{
 			$this->loadView("mainviews/error/genericpage", $this->data);
 		}
 	}
+	
+	public function clubDataManagement(){
+		if(!$this->checkSession())
+			redirect("Login/index");
+		
+		try {
+			$prodClubBook = $this->club_model->getLast5ProductsClubBook();
+			$prodClubArt  = $this->club_model->getLast5ProductsClubArt ();
+			
+			$this->data->prodClubBook = $prodClubBook;
+			$this->data->prodClubArt  = $prodClubArt ;
+		} catch(Exception $ex) {
+			$this->data->exception = $ex->getMessage();
+			$this->data->operator = $this->session->userdata("operator");
+			$this->loadView("mainviews/error/genericpage", $this->data);
+		}
+		
+		$this->data->operator = $this->session->userdata('operator');	
+		$this->loadView("clubs/clubDataView", $this->data);
+	}
+	
+	public function registerNewProductForm(){
+		if(!$this->checkSession())
+			redirect("Login/index");
+		
+		try {
+			$type = $this->input->get("t");
+			if($type != CLUBE_DO_LIVRO && $type != CLUBE_DE_ARTE)
+				throw new Exception("Problema no processamento, favor retornar e tentar novamente.");
+			
+			$this->data->type = $type;
+			$this->data->operator = $this->session->userdata('operator');
+			$this->loadView("clubs/insertNewProduct", $this->data);
+		} catch (Exception $ex) {
+			$this->data->exception = $ex->getMessage();
+			$this->data->operator = $this->session->userdata("operator");
+			$this->loadView("mainviews/error/genericpage", $this->data);
+		}
+	}
+	
+	public function clubArtAddNewMonthData(){
+		if(!$this->checkSession())
+			redirect("Login/index");
+		
+		try {
+			$preco = $this->input->get("t");
+			if($type != CLUBE_DO_LIVRO && $type != CLUBE_DE_ARTE)
+				throw new Exception("Problema no processamento, favor retornar e tentar novamente.");
+				
+			$this->data->type = $type;
+			$this->data->operator = $this->session->userdata('operator');
+			$this->loadView("clubs/insertNewProduct", $this->data);
+		} catch (Exception $ex) {
+			$this->data->exception = $ex->getMessage();
+			$this->data->operator = $this->session->userdata("operator");
+			$this->loadView("mainviews/error/genericpage", $this->data);
+		}
+	}
+	
+	public function clubBookAddNewMonthData(){
+		
+	}
 }
 ?>
