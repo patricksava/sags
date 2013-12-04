@@ -50,12 +50,15 @@ $active_record = TRUE;
 
 $db['sagsbetadev']['hostname'] = 'localhost';
 $db['sagsbetadev']['port']     = '5432';
+
 $db['sagsbetadev']['username'] = 'postgres';
 $db['sagsbetadev']['password'] = 'postgres';
 $db['sagsbetadev']['database'] = 'sagsbetadev3';
-/*$db['sagsbetadev']['username'] = 'bd1grupo10';
+/*
+$db['sagsbetadev']['username'] = 'bd1grupo10';
 $db['sagsbetadev']['password'] = 'bd1grupo10./123';
-$db['sagsbetadev']['database'] = 'db55';*/
+$db['sagsbetadev']['database'] = 'db55';
+*/
 $db['sagsbetadev']['dbdriver'] = 'postgre';
 $db['sagsbetadev']['dbprefix'] = '';
 $db['sagsbetadev']['pconnect'] = FALSE;

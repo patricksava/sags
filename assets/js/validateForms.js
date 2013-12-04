@@ -60,6 +60,22 @@ function validateFormNovoProdutoClube(){
 		alert("Informacoes invalidas, favor corrigir.");
 }
 
+function validateFormNovaDoacaoCesta(){
+	var flagOk = true;
+	
+	if($("#novoCodCesta").value == ''){
+		flagOk = false;
+	}
+	if($("#novoQuantidade").value == ''){
+		flagOk = false;
+	}
+	
+	if( flagOk )
+		$("#newDonationAssocForm").submit();
+	else
+		alert("Informacoes invalidas, favor corrigir.");
+}
+
 function goBack()
 {
 	window.history.back();

@@ -17,7 +17,7 @@
 				<a href="<?=$this->config->item('basic_url')?>ClubController/clubManagementPage?id=<?=$associate->getAssociateId()?>">Registro de Clubes</a>
 			</div>
 			<div class="col-lg-3">
-				<a href="<?=$this->config->item('basic_url')?>BasicPackageController/basicPackageManagementPage?id=<?=$associate->getAssociateId()?>">Registro de Cesta B&aacute;sica</a>
+				<a href="<?=$this->config->item('basic_url')?>CestaBasicaController/associateDonationManagementPage?id=<?=$associate->getAssociateId()?>">Registro de Cesta B&aacute;sica</a>
 			</div>
 		</div>
 		
