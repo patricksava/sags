@@ -67,6 +67,16 @@ class Club_model extends CI_Model{
 			throw new Exception("Falha ao cadastrar participante");
 	}
 	
+	public function insertNewProduct($club){
+		$sql = "INSERT INTO dadosclube VALUES(?,?,?,?,?)";
+		$arrValues = array($club->getClubCode(), $club->getMonth(), $club->getYear(), $club->getPrice(), $club->getTitle());
+		$result = $this->db->query($sql, $arrValues);
+		if($result)
+			return true;
+		else
+			throw new Exception("Falha ao inserir novo produto do clube");
+	}
+	
 	public function createClub($arr){
 			return new Club(
 					$arr['codclube'],

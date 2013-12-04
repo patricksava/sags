@@ -119,14 +119,21 @@ class ClubController extends PHPController{
 			redirect("Login/index");
 		
 		try {
-			$preco = $this->input->get("t");
-			if($type != CLUBE_DO_LIVRO && $type != CLUBE_DE_ARTE)
-				throw new Exception("Problema no processamento, favor retornar e tentar novamente.");
-				
-			$this->data->type = $type;
+			$price = $this->input->post("value");
+			$title = $this->input->post("titulo");
+			$month = $this->input->post("mes");
+			$year  = $this->input->post("ano");
+			
+			$prod = new Club('Clube Arte', $month, $year, $price, $title);
+			
+			$this->generic_model->openTransaction();
+			$this->club_model->insertNewProduct($prod);
+			$this->generic_model->commitTransaction();
+			
 			$this->data->operator = $this->session->userdata('operator');
-			$this->loadView("clubs/insertNewProduct", $this->data);
+			$this->loadView("clubs/productInserted", $this->data);
 		} catch (Exception $ex) {
+			$this->generic_model->rollbackTransaction();
 			$this->data->exception = $ex->getMessage();
 			$this->data->operator = $this->session->userdata("operator");
 			$this->loadView("mainviews/error/genericpage", $this->data);
@@ -134,7 +141,29 @@ class ClubController extends PHPController{
 	}
 	
 	public function clubBookAddNewMonthData(){
+		if(!$this->checkSession())
+			redirect("Login/index");
 		
+		try {
+			$price = $this->input->post("value");
+			$title = $this->input->post("titulo");
+			$month = $this->input->post("mes");
+			$year  = $this->input->post("ano");
+				
+			$prod = new Club('Clube Livro', $month, $year, $price, $title);
+				
+			$this->generic_model->openTransaction();
+			$this->club_model->insertNewProduct($prod);
+			$this->generic_model->commitTransaction();
+				
+			$this->data->operator = $this->session->userdata('operator');
+			$this->loadView("clubs/productInserted", $this->data);
+		} catch (Exception $ex) {
+			$this->generic_model->rollbackTransaction();
+			$this->data->exception = $ex->getMessage();
+			$this->data->operator = $this->session->userdata("operator");
+			$this->loadView("mainviews/error/genericpage", $this->data);
+		}
 	}
 }
 ?>
