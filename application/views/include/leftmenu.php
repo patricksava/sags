@@ -7,7 +7,9 @@
 		<li><a href="<?=$this->config->item('basic_url')?>MainController/searchAssociate">Buscar Associado</a></li>
 		<li><a href="<?=$this->config->item('basic_url')?>DonationController/donationForm">Nova Doa&ccedil;&atilde;o</a></li>
 		<li><a href="<?=$this->config->item('basic_url')?>ClubController/clubDataManagement">Clubes Livro/Artes</a></li>
+		<!-- 
 		<li><a href="#">Cestas B&aacute;sicas</a></li>
 		<li><a href="#">S&oacute;cios da Casa</a></li>
+		 -->
 	</ul>
 </div>
