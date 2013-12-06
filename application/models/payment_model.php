@@ -73,7 +73,13 @@ class payment_model extends CI_Model{
 	}
 	
 	public function createPaymentsPackages(){
-		//TODO: implementar criacao de pagamentos de cesta!
+		$sql = "SELECT gera_boletos_cestas()";
+		$result = $this->db->query($sql);
+	
+		if($result->num_rows()>0)
+			return true;
+		else
+			throw new Exception("Falha na criação dos pagamentos das cestas basicas");	
 	}
 	
 	private function createPaymentsClubBook(){

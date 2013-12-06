@@ -39,7 +39,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 
 define('SOCIOCASA', 'SOC');
-define('CESTABASICA', 'CBS');
+define('CESTABASICA', 'CBC');
 define('CLUBELIVRO', 'CBL');
 define('CLUBEARTE', 'CBA');
 

@@ -32,6 +32,15 @@
 							</div>
 						</div>
 					</div>
+					<?php if($payment->getServiceCode() == CESTABASICA){ ?>
+						<div class="form-group">
+							<label for="paymentmode" class="col-lg-2 control-label"> Modo de pagamento: </label>
+							<div class="col-lg-4" style="margin-top:6px;">
+								<input type="radio" name="paymentmode" value="dinheiro" checked="checked"/> Dinheiro<br />
+								<input type="radio" name="paymentmode" value="alimento" /> Alimento
+							</div>
+						</div>
+					<?php } ?>
 					<div class="col-lg-4">
 						<div class="form-group">
 							<div class="col-lg-10 col-lg-offset-2">

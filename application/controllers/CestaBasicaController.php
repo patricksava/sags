@@ -11,6 +11,7 @@ class CestaBasicaController extends PHPController{
 		$this->load->model('generic_model');
 		$this->load->model('associate_model');
 		$this->load->model('cestabasica_model');
+		$this->load->model('payment_model');
 	}
 
 	public function associateDonationManagementPage(){
@@ -24,9 +25,11 @@ class CestaBasicaController extends PHPController{
 			
 			$associado = $this->associate_model->getAssociateById($assocId);
 			$donations = $this->cestabasica_model->getDonationsByAssociate($associado);
+			$payments  = $this->payment_model->getPaymentHistoryByIdAndService($assocId, CESTABASICA);
 			
 			$this->data->associate = $associado;
 			$this->data->donations = $donations;
+			$this->data->payments  = $payments;
 			$this->data->operator  = $this->session->userdata("operator");
 			$this->loadView("cesta/associateView", $this->data);
 		} catch(Exception $ex) {
