@@ -53,6 +53,7 @@
   		</form>
   		
   		<br />
+  		<?php if(!is_null($payments)){ ?>
 		<h5>Demonstrativo de pagamentos de Cestas B&aacute;sicas</h5>
 		<table class="table table-condensed table-hover">
 		  	<tr>
@@ -82,5 +83,6 @@
 		  		</tr>
 		  	<?php } ?>
 		</table>
+		<?php } ?>
   	</div>
  </div>
